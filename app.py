@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-from langchain.vectorstores.chroma import Chroma
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chat_models import ChatOpenAI
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 import os
 import pandas as pd

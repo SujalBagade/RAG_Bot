@@ -1,10 +1,11 @@
 import argparse
 from dataclasses import dataclass
-from langchain.vectorstores.chroma import Chroma
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chat_models import ChatOpenAI
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
-
+from langchain_openai import OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
 CHROMA_PATH = "chroma"
 
 PROMPT_TEMPLATE = """
@@ -33,21 +34,21 @@ def main():
     if len(results) == 0 or results[0][1] < 0.7:
         prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
         prompt = prompt_template.format(context="", question=query_text)
-        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /n else promt", prompt)     
+        #print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /n else promt", prompt)     
       
            
     else:
         context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
         prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
         prompt = prompt_template.format(context=context_text, question=query_text)
-        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ /n if promt", prompt)
+        #print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ /n if promt", prompt)
 
     model = ChatOpenAI()
-    response_text = model.predict(prompt)
+    response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("source", None) for doc, _score in results]
     formatted_response = f"Response: {response_text}\nSources: {sources}"
-    print ("/n ####################################################")
+    #print ("/n ####################################################")
     print(formatted_response)
 
 
