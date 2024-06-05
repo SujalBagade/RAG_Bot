@@ -1,5 +1,13 @@
+flask
+flask-cors
 langchain
-unstructured # Document loading
-chromadb # Vector storage
-openai # For embeddings
-tiktoken  # For embeddings
+openai
+pandas
+faiss-cpu
+numpy
+werkzeug
+langchain_community
+langchain_openai
+pyPDF2
+chromadb
+unstructured
