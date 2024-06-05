@@ -6,3 +6,8 @@ pandas
 faiss-cpu
 numpy
 werkzeug
+langchain_community
+langchain_openai
+pyPDF2
+chromadb
+unstructured
